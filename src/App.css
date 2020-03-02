@@ -1,16 +1,10 @@
-.App {
+/* .App {
   text-align: center;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
@@ -26,13 +20,42 @@
 
 .App-link {
   color: #61dafb;
+} */
+
+body{
+  font-family: Open Sans, Helvetica, Sans Serif;
+  padding-top:20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.green{
+  background:green;
+}
+
+.red{
+  background:red;
+}
+
+.grey{
+  background:gray;
+}
+
+.panel-danger .panel-heading h3,
+.panel-danger .panel-body p
+{
+  font-weight:600;
+}
+
+h2 a{
+  font-weight:300;
+  color:#aaa;
+}
+
+footer{
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+.logo {
+  width: 34px;
+  margin-top: -5px;
 }

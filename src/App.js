@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import logo from './icon_light.svg';
+import StatusList from './components/StatusList';
+import UpcomingList from './components/UpcomingList';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+        <div className="container">
+            < div className="row">
+                <div>
+                    <h1 className="text-muted"><img className="logo" src={logo} alt='IBM Blockchain Logo'></img> IBM Blockchain Platform - Status Page</h1>
+                    <hr />
+                    <p className="lead">
+                        This service status page is updated every 10 seconds. Below you can find the latest incidents.
+                    </p>
+                    <StatusList></StatusList>
+                    <UpcomingList></UpcomingList>
+                </div>
+            </div>
+        </div>
+        )
+    }
 }
 
 export default App;
