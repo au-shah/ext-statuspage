@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/ext-statuspage/static/css/main.dbb7bda4.chunk.css",
-    "main.js": "/ext-statuspage/static/js/main.b3f3a291.chunk.js",
-    "main.js.map": "/ext-statuspage/static/js/main.b3f3a291.chunk.js.map",
+    "main.css": "/ext-statuspage/static/css/main.139f5885.chunk.css",
+    "main.js": "/ext-statuspage/static/js/main.6d71dee3.chunk.js",
+    "main.js.map": "/ext-statuspage/static/js/main.6d71dee3.chunk.js.map",
     "runtime-main.js": "/ext-statuspage/static/js/runtime-main.5a80f917.js",
     "runtime-main.js.map": "/ext-statuspage/static/js/runtime-main.5a80f917.js.map",
     "static/css/2.9702ecfc.chunk.css": "/ext-statuspage/static/css/2.9702ecfc.chunk.css",
-    "static/js/2.7082d83a.chunk.js": "/ext-statuspage/static/js/2.7082d83a.chunk.js",
-    "static/js/2.7082d83a.chunk.js.map": "/ext-statuspage/static/js/2.7082d83a.chunk.js.map",
+    "static/js/2.2fe96f76.chunk.js": "/ext-statuspage/static/js/2.2fe96f76.chunk.js",
+    "static/js/2.2fe96f76.chunk.js.map": "/ext-statuspage/static/js/2.2fe96f76.chunk.js.map",
     "index.html": "/ext-statuspage/index.html",
-    "precache-manifest.9436607ddfe008b8f2e3de88d1a6924d.js": "/ext-statuspage/precache-manifest.9436607ddfe008b8f2e3de88d1a6924d.js",
+    "precache-manifest.c471d4240bf6d1ee4eecc7d1f409362f.js": "/ext-statuspage/precache-manifest.c471d4240bf6d1ee4eecc7d1f409362f.js",
     "service-worker.js": "/ext-statuspage/service-worker.js",
     "static/css/2.9702ecfc.chunk.css.map": "/ext-statuspage/static/css/2.9702ecfc.chunk.css.map",
-    "static/css/main.dbb7bda4.chunk.css.map": "/ext-statuspage/static/css/main.dbb7bda4.chunk.css.map",
-    "static/js/2.7082d83a.chunk.js.LICENSE.txt": "/ext-statuspage/static/js/2.7082d83a.chunk.js.LICENSE.txt",
+    "static/css/main.139f5885.chunk.css.map": "/ext-statuspage/static/css/main.139f5885.chunk.css.map",
+    "static/js/2.2fe96f76.chunk.js.LICENSE.txt": "/ext-statuspage/static/js/2.2fe96f76.chunk.js.LICENSE.txt",
     "static/media/font-awesome.min.css": "/ext-statuspage/static/media/fontawesome-webfont.fee66e71.woff",
     "static/media/icon_light.svg": "/ext-statuspage/static/media/icon_light.ec17a1ea.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.5a80f917.js",
     "static/css/2.9702ecfc.chunk.css",
-    "static/js/2.7082d83a.chunk.js",
-    "static/css/main.dbb7bda4.chunk.css",
-    "static/js/main.b3f3a291.chunk.js"
+    "static/js/2.2fe96f76.chunk.js",
+    "static/css/main.139f5885.chunk.css",
+    "static/js/main.6d71dee3.chunk.js"
   ]
 }
