@@ -74,7 +74,7 @@ class StatusList extends Component {
         }
     }
     render() {
-        if (this.state.issues) {
+        if (this.state.issues || this.state.error) {
             return (
                 <div>
                     <IssuesList 

@@ -8,14 +8,15 @@ class App extends Component {
   render() {
     return (
         <div className="container">
-            < div className="row">
-                <div>
+            <div className="row">
+                <div className="col-md-15 col-md-offset-2">
                     <h1 className="text-muted"><img className="logo" src={logo} alt='IBM Blockchain Logo'></img> IBM Blockchain Platform - Status Page</h1>
                     <hr />
                     <p className="lead">
-                        This service status page is updated every 10 seconds. Below you can find the latest incidents.
+                        Below you can find the latest incidents as well as the information for our next release.
                     </p>
                     <StatusList></StatusList>
+                    <hr/>
                     <UpcomingList></UpcomingList>
                 </div>
             </div>

@@ -1,4 +1,5 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
+import '../App.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 
@@ -36,6 +37,36 @@ const markDownParser = function(str){
 }
 
 class IssuesList extends Component {
+    getLabel(issue) {
+        if (issue.milestone) {
+            let labelJSX;
+
+            let issueLabels = issue.labels;
+            let bug = false;
+            issueLabels.map((label) => {
+                if (label.name === 'bug') {
+                    bug = true;
+                }
+            });
+
+            if (bug) {
+                labelJSX = (
+                <h3 className='label bg-bug'> {'bug'} 
+                </h3>
+                )
+            } else {
+                labelJSX = (
+                <h3 className='label bg-feature'> {'feature'} 
+                </h3>
+                )
+            }
+            return labelJSX
+
+        } else {
+            return ''
+        }
+    }
+
     render(){
         let issueItems = (
             <p className='alert alert-info' key='info'>Please wait, loading status information</p>
@@ -61,29 +92,30 @@ class IssuesList extends Component {
 
                 let creationDate = new Date(issue.created_at);
                 let updateDate = new Date(issue.updated_at);
-                let updateOrCloseDate = 'updated: '+ updateDate.toLocaleString();
-                let className = 'bg-danger';
+                let updateOrCloseDate = 'Updated: '+ updateDate.toLocaleDateString();
+                let className = "panel-danger";
                 if (issue.state === 'closed') {
-                    className = 'bg-success';
-                    updateOrCloseDate = 'resolved: ' + updateDate.toLocaleString();
+                    className = 'panel-success';
+                    updateOrCloseDate = 'Resolved: ' + updateDate.toLocaleDateString();
                 }
 
                 return (
-                    <div className='card'>
-                        <div className={'card-header ' + className}>
-                            <h3 className='card-title'>
+                    <div className={"panel " + className}>
+                        <div className="panel-heading">
+                            <h3 className='panel-title'>
                                 {(issue.state === 'closed' ? 'RESOLVED: ' : '') + issue.title + ' (#' + issue.number + ')'}
                             </h3>
+                            {this.getLabel(issue)}
                         </div>
-                        <div className='card-body'>
+                        <div className='panel-body'>
                             <p>
-                                <span className=''>{'reported:' + creationDate.toLocaleString()}</span>
+                                <span>{'Reported: ' + creationDate.toLocaleDateString()}</span>
                                 <span className='float-right'>{updateOrCloseDate}</span>
                             </p>
                             <hr className='hr'></hr>
                             {issue.state === 'open' ? markDownParser(issue.body): ''}
                             <p>
-                                <a href={issue.html_url}>{'discuss on Github(' + issue.comments + ' comments so far)'}</a>
+                                <a href={issue.html_url}>{'View on GitHub (' + issue.comments + ' comments so far)'}</a>
                             </p>
                         </div>
                     </div>
@@ -103,6 +135,10 @@ class IssuesList extends Component {
             spinnerClass += ' fa-spin';
         }
 
+        let milestoneUrl = 'https://github.com/'+githubProject+'/milestone/';
+        milestoneUrl += this.props.milestoneNumber;
+        const seeMilestoneLink = (this.props.newestMilestone !== undefined) ? (<a href={milestoneUrl}> {'See current milestone'} </a>) : (<a href={issuesHtmlUrl}> {'See all on GitHub'}</a>);
+
         return(
             <div>
                 <h2>
@@ -112,9 +148,9 @@ class IssuesList extends Component {
                     </a>
                 </h2>
                 <p>
-                    <a href={issuesHtmlUrl}> {'see all on Github'}</a>
+                    {seeMilestoneLink}
                     {' // '}
-                    <a href={newIssueUrl}>{'report an incident'}</a>
+                    <a href={newIssueUrl}>{'Report an incident'}</a>
                 </p>
                 {issueItems}
             </div>
