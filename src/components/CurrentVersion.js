@@ -1,30 +1,33 @@
-import React, { Component } from 'react'; 
-import IssuesList from './IssuesList';
+import React, { Component } from 'react';
 import $ from "jquery";
+
 
 var githubProject = 'IBM-Blockchain/blockchain-vscode-extension';
 
 //Github URLs
-var issuesStatusApiUrl = 'https://api.github.com/repos/'+githubProject+'/issues?labels=status'
+var currentReleaseApiUrl = 'https://api.github.com/repos/'+githubProject+'/releases/latest';
 
-class StatusList extends Component {
+class CurrentVersion extends Component {
 
     constructor() {
         super();
         this.state = {
-            issues: undefined,
+            currentVersion: undefined,
             error: undefined,
             refreshing: false
         }
 
-        this.refreshIssues = this.refreshIssues.bind(this);
+        this.refreshVersion = this.refreshVersion.bind(this);
     }
 
     componentDidMount(){
-        this.refreshIssues()
+        this.refreshVersion()
     }
 
-    refreshIssues(e){
+    componentWillUnmount(){
+    }
+
+    refreshVersion(e){
 
         if (e !== undefined) {
             e.preventDefault();
@@ -34,9 +37,10 @@ class StatusList extends Component {
             refreshing : true
         });
 
-        var updateIssues = function(data){
+        var latestRelease = function(data){
+            console.log(data);
             this.setState({
-                issues : data
+                currentVersion : data
             });
             //we add a timeout to give some UI feedback on the loading even if it is instantaneous
             setTimeout(function(){
@@ -47,8 +51,8 @@ class StatusList extends Component {
         }.bind(this)
 
         $.get({
-            url : issuesStatusApiUrl,
-            success : updateIssues,
+            url : currentReleaseApiUrl,
+            success : latestRelease,
             error : function(){
                 //we add a timeout to give some UI feedback on the loading even if it is instantaneous
                 setTimeout(function(){
@@ -57,7 +61,7 @@ class StatusList extends Component {
                     });
                 }.bind(this),200);
                 this.setState({
-                    error : 'Cannot load incidents from Github, sorry.'
+                    error : 'Cannot get latest release from GitHub'
                 });
             }.bind(this)
         });
@@ -68,19 +72,13 @@ class StatusList extends Component {
             refreshing : false
         }
     }
-    render() {
-        if (this.state.issues || this.state.error) {
-            return (
-                <div>
-                    <IssuesList 
-                        key='issues' issues={this.state.issues}
-                        refreshing={this.state.refreshing}
-                        error={this.state.error}
-                        refreshIssues={this.refreshIssues}
-                        title='Current Incidents'
-                        issueLabel='status'>
-                    </IssuesList>
-                </div>
+
+    render(){
+        if (this.state.currentVersion || this.state.error) {
+            return(
+                <p>
+                    {'Latest version: ' + this.state.currentVersion.name}
+                </p>
             );
         } else {
             return <></>;
@@ -88,4 +86,4 @@ class StatusList extends Component {
     }
 }
 
-export default StatusList;
+export default CurrentVersion;

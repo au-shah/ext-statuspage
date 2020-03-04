@@ -23,11 +23,6 @@ class UpcomingList extends Component {
 
     componentDidMount(){
         this.refreshIssues()
-        // this.checkerId = setInterval(this.refreshIssues,10000);
-    }
-
-    componentWillUnmount(){
-        // clearInterval(this.refreshIssues);
     }
 
     getMilestones() {
@@ -99,13 +94,18 @@ class UpcomingList extends Component {
         }
     }
     render() {
-        var latestDueDate = '';
+        let latestDueDate = '';
+        let milestoneNumber = '';
         if (this.state.newestMilestone) {
             const dt = new Date(this.state.newestMilestone.due_on);
 
+            // Set expected release date to milestone due_date minus days (thursday before)
+            dt.setDate(dt.getDate()-4);
+
             latestDueDate = dt.toLocaleDateString();
+            milestoneNumber = this.state.newestMilestone.number;
         }
-        if (this.state.issues) {
+        if (this.state.issues || this.state) {
             return (
                 <div>
                     <IssuesList 
@@ -115,7 +115,8 @@ class UpcomingList extends Component {
                         refreshIssues={this.refreshIssues}
                         title={'Upcoming release: expected on ' + latestDueDate}
                         issueLabel='next'
-                        newestMilestone= {this.state.newestMilestone}>
+                        newestMilestone= {this.state.newestMilestone}
+                        milestoneNumber={milestoneNumber}>
                     </IssuesList>
                 </div>
             );
