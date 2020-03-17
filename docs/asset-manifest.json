@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/blockchain-vscode-extension/static/css/main.fe640ef6.chunk.css",
+    "main.js": "/blockchain-vscode-extension/static/js/main.4093dcc0.chunk.js",
+    "main.js.map": "/blockchain-vscode-extension/static/js/main.4093dcc0.chunk.js.map",
+    "runtime-main.js": "/blockchain-vscode-extension/static/js/runtime-main.b06c8c85.js",
+    "runtime-main.js.map": "/blockchain-vscode-extension/static/js/runtime-main.b06c8c85.js.map",
+    "static/css/2.b7d00895.chunk.css": "/blockchain-vscode-extension/static/css/2.b7d00895.chunk.css",
+    "static/js/2.0204d7fd.chunk.js": "/blockchain-vscode-extension/static/js/2.0204d7fd.chunk.js",
+    "static/js/2.0204d7fd.chunk.js.map": "/blockchain-vscode-extension/static/js/2.0204d7fd.chunk.js.map",
+    "index.html": "/blockchain-vscode-extension/index.html",
+    "precache-manifest.655f1cc4605b99708558b7e0aa2259c7.js": "/blockchain-vscode-extension/precache-manifest.655f1cc4605b99708558b7e0aa2259c7.js",
+    "service-worker.js": "/blockchain-vscode-extension/service-worker.js",
+    "static/css/2.b7d00895.chunk.css.map": "/blockchain-vscode-extension/static/css/2.b7d00895.chunk.css.map",
+    "static/css/main.fe640ef6.chunk.css.map": "/blockchain-vscode-extension/static/css/main.fe640ef6.chunk.css.map",
+    "static/js/2.0204d7fd.chunk.js.LICENSE.txt": "/blockchain-vscode-extension/static/js/2.0204d7fd.chunk.js.LICENSE.txt",
+    "static/media/ext_logo.svg": "/blockchain-vscode-extension/static/media/ext_logo.dcb5754d.svg",
+    "static/media/font-awesome.scss": "/blockchain-vscode-extension/static/media/fontawesome-webfont.fee66e71.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b06c8c85.js",
+    "static/css/2.b7d00895.chunk.css",
+    "static/js/2.0204d7fd.chunk.js",
+    "static/css/main.fe640ef6.chunk.css",
+    "static/js/main.4093dcc0.chunk.js"
+  ]
+}
