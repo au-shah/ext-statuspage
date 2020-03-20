@@ -91,7 +91,7 @@ class UpcomingList extends Component<{}, UpcomingState> {
                         issues={issuesThisMilestone}
                         error={this.state.error}
                         refreshIssues={this.refreshIssues}
-                        title={'Upcoming release: expected on ' + latestDueDate}
+                        title={'Fixed in upcoming release (expected on ' + latestDueDate + ')'}
                         issueLabel='next'
                         newestMilestone= {this.state.newestMilestone}
                         milestoneNumber={milestoneNumber}>

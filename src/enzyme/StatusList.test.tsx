@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import chai from 'chai';
 import sinon, { SinonStub } from 'sinon';
 import Axios from 'axios';
@@ -54,14 +54,14 @@ describe('StatusList', () => {
                 url: 'incident2',
                 title: 'someOtherIncident'
             }];
-        const component: any = await mount(<StatusList/>);
+        const component: ReactWrapper<{}, {issues: any, error: any}, StatusList> = await mount(<StatusList/>);
         component.state().should.deep.equal({issues, error: undefined});
         axiosGetStub.should.have.been.calledOnceWithExactly(issuesStatusApiUrl);
     });
 
     it('should show error if API call is unsuccessful', async () => {
         axiosGetStub.returns(undefined);
-        const component: any = await mount(<StatusList/>);
+        const component: ReactWrapper<{}, {issues: any, error: any}, StatusList> = await mount(<StatusList/>);
         component.state().error.should.equal('Cannot load incidents from Github, sorry.');
         axiosGetStub.should.have.been.calledOnceWithExactly(issuesStatusApiUrl);
     });

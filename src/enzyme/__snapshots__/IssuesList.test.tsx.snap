@@ -2,25 +2,35 @@
 
 exports[`IssuesList should render the expected snapshot 1`] = `
 <div>
-  <h2 />
-  <p>
+  <p
+    className="div-title"
+  >
+    <span
+      className="new-issue-position"
+    >
+      <a
+        className="button"
+        href="https://github.com/IBM-Blockchain/blockchain-vscode-extension/issues/new"
+      >
+        Report a new issue
+      </a>
+    </span>
     <a
+      className="link"
       href="https://github.com/IBM-Blockchain/blockchain-vscode-extension/issues?q="
     >
        
-      See all on GitHub
-    </a>
-     // 
-    <a
-      href="https://github.com/IBM-Blockchain/blockchain-vscode-extension/issues/new"
-    >
-      Report an incident
+      View all on GitHub
     </a>
   </p>
-  <p
-    className="alert alert-info"
+  <div
+    className="flex-container"
   >
-    Please wait, loading status information
-  </p>
+    <p
+      className="alert alert-info"
+    >
+      Please wait, loading status information
+    </p>
+  </div>
 </div>
 `;

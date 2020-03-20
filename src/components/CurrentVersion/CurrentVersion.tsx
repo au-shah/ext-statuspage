@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import './CurrentVersion.scss';
 
 const githubProject: string = 'IBM-Blockchain/blockchain-vscode-extension';
 
 // Github URLs
 const currentReleaseApiUrl: string = 'https://api.github.com/repos/' + githubProject + '/releases/latest';
+const allReleases: string = 'https://github.com/' + githubProject + '/releases/';
 
 interface VersionState {
     currentVersion: string;
@@ -31,8 +33,11 @@ class CurrentVersion extends Component<{}, VersionState> {
     render(): JSX.Element {
         if (this.state.currentVersion.length !== 0) {
             return(
-                <p>
-                    {'Latest version: ' + this.state.currentVersion}
+                <p className='latest-version'>
+                    {'Latest release: '}
+                    <a className='link' href={allReleases}>
+                        {this.state.currentVersion}
+                    </a>
                 </p>
             );
         } else {
