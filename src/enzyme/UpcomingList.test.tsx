@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import chai from 'chai';
 import sinon from 'sinon';
 import Axios from 'axios';
@@ -91,7 +91,7 @@ describe('UpcomingList', () => {
     });
 
     it('should get the newest milestone with a successful api call', async () => {
-        const component: any = await mount(<UpcomingList/>);
+        const component: ReactWrapper<{}, {issues: any, error: any, newestMilestone: any}, UpcomingList> = await mount(<UpcomingList/>);
         axiosGetStub.should.have.been.calledTwice;
         component.state().newestMilestone.should.deep.equal({
             url: 'anotherMilestoneURL',
@@ -102,7 +102,7 @@ describe('UpcomingList', () => {
 
     it('should show error when there is an unsuccessful milestone api call', async () => {
         axiosGetStub.onFirstCall().returns(undefined);
-        const component: any = await mount(<UpcomingList/>);
+        const component: ReactWrapper<{}, {issues: any, error: any, newestMilestone: any}, UpcomingList> = await mount(<UpcomingList/>);
         axiosGetStub.should.have.been.calledTwice;
         component.state().error.should.equal('Cannot load from Github, sorry.');
     });
@@ -145,7 +145,7 @@ describe('UpcomingList', () => {
                     description: 'someOtherLabelDescription'
                 }]
             }];
-        const component: any = await mount(<UpcomingList/>);
+        const component: ReactWrapper<{}, {issues: any, error: any, newestMilestone: any}, UpcomingList> = await mount(<UpcomingList/>);
         component.setState({
             issues: issues,
             error: undefined
@@ -158,7 +158,7 @@ describe('UpcomingList', () => {
     it('should show error when there is an unsuccessful api calls', async () => {
         axiosGetStub.onFirstCall().returns(undefined);
         axiosGetStub.onSecondCall().returns(undefined);
-        const component: any = await mount(<UpcomingList/>);
+        const component: ReactWrapper<{}, {issues: any, error: any, newestMilestone: any}, UpcomingList> = await mount(<UpcomingList/>);
         component.state().error.should.equal('Cannot load from Github, sorry.');
         axiosGetStub.should.have.been.calledTwice;
     });

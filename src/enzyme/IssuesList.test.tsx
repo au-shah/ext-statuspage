@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import chai from 'chai';
 import sinon, { SinonSandbox } from 'sinon';
 import sinonChai from 'sinon-chai';
@@ -29,17 +29,17 @@ describe('IssuesList', () => {
     });
 
     it('should show error test if error is passed as a prop', async () => {
-        const component: any = await mount(<IssuesList error={'someError'}/>);
+        const component: ReactWrapper<{issues: any, error: any, refreshIssues: any, title: any, issueLabel: any, newestMilestone: any, milestoneNumber: any}, {}, IssuesList> = await mount(<IssuesList error={'someError'}/>);
         component.text().includes('someError').should.be.true;
     });
 
     it('should show message if no incidents to show', async () => {
-        const component: any = await mount(<IssuesList issues={[]}/>);
+        const component: ReactWrapper<{issues: any, error: any, refreshIssues: any, title: any, issueLabel: any, newestMilestone: any, milestoneNumber: any}, {}, IssuesList> = await mount(<IssuesList issues={[]}/>);
         component.text().includes('No incidents found!').should.be.true;
     });
 
     it('should show message if no completed issues to show from the most recent milestone', async () => {
-        const component: any = await mount(<IssuesList issues={[]} newestMilestone={'someMilestone'}/>);
+        const component: ReactWrapper<{issues: any, error: any, refreshIssues: any, title: any, issueLabel: any, newestMilestone: any, milestoneNumber: any}, {}, IssuesList> = await mount(<IssuesList issues={[]} newestMilestone={'someMilestone'}/>);
         component.text().includes('No completed issues!').should.be.true;
     });
 
@@ -51,7 +51,7 @@ describe('IssuesList', () => {
             title: 'someIncident issue',
             state: 'open'
         };
-        const component: any = await mount(<IssuesList issues={[incidents]}/>);
+        const component: ReactWrapper<{issues: any, error: any, refreshIssues: any, title: any, issueLabel: any, newestMilestone: any, milestoneNumber: any}, {}, IssuesList> = await mount(<IssuesList issues={[incidents]}/>);
         component.text().includes('someIncident issue').should.be.true;
     });
 
@@ -88,10 +88,8 @@ describe('IssuesList', () => {
                 id: 'someMilestoneID'
             }
         }];
-        const component: any = await mount(<IssuesList issues={completedIssues} newestMilestone={'someMilestone'}/>);
+        const component: ReactWrapper<{issues: any, error: any, refreshIssues: any, title: any, issueLabel: any, newestMilestone: any, milestoneNumber: any}, {}, IssuesList> = await mount(<IssuesList issues={completedIssues} newestMilestone={'someMilestone'}/>);
         component.text().includes('Some completed issue').should.be.true;
         component.text().includes('Some other completed issue').should.be.true;
-        component.text().includes('bug').should.be.true;
-        component.text().includes('feature').should.be.true;
     });
 });

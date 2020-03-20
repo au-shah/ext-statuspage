@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './IssuesList.scss';
-import 'bootstrap/scss/bootstrap.scss';
-import 'font-awesome/scss/font-awesome.scss';
 
 const githubProject: string = 'IBM-Blockchain/blockchain-vscode-extension';
 
@@ -20,36 +18,6 @@ interface IssueProps {
 }
 
 class IssuesList extends Component<IssueProps, {}> {
-    getLabel(issue: any): any {
-        if (issue.milestone) {
-            let labelJSX: any;
-
-            const issueLabels: any = issue.labels;
-            let bug: boolean = false;
-            issueLabels.map((label: any) => {
-                if (label.name === 'bug') {
-                    bug = true;
-                }
-            });
-
-            if (bug) {
-                labelJSX = (
-                <h3 className='label bg-bug'> {'bug'}
-                </h3>
-                );
-            } else {
-                labelJSX = (
-                <h3 className='label bg-feature'> {'feature'}
-                </h3>
-                );
-            }
-            return labelJSX;
-
-        } else {
-            return '';
-        }
-    }
-
     render(): JSX.Element {
         let issueItems: any = (
             <p className='alert alert-info' key='info'>Please wait, loading status information</p>
@@ -63,30 +31,23 @@ class IssuesList extends Component<IssueProps, {}> {
                 const creationDate: Date = new Date(issue.created_at);
                 const updateDate: Date = new Date(issue.updated_at);
                 let updateOrCloseDate: string = 'Updated: ' + updateDate.toLocaleDateString();
-                let className: string = 'panel-danger';
                 if (issue.state === 'closed') {
-                    className = 'panel-success';
                     updateOrCloseDate = 'Resolved: ' + updateDate.toLocaleDateString();
                 }
 
                 return (
-                    <div className={'panel ' + className}>
-                        <div className='panel-heading'>
-                            <h3 className='panel-title'>
+                    <div className='panel'>
+                        <div>
+                            <p className='issue-title'>
                                 {(issue.state === 'closed' ? 'RESOLVED: ' : '') + issue.title + ' (#' + issue.number + ')'}
-                            </h3>
-                            {this.getLabel(issue)}
-                        </div>
-                        <div className='panel-body'>
-                            <p>
-                                <span>{'Reported: ' + creationDate.toLocaleDateString()}</span>
-                                <span className='float-right'>{updateOrCloseDate}</span>
-                            </p>
-                            <hr className='hr'></hr>
-                            <p>
-                                <a href={issue.html_url}>{'View on GitHub (' + issue.comments + ' comments so far)'}</a>
                             </p>
                         </div>
+                        <div>
+                            <span className='date'>{'Reported: ' + creationDate.toLocaleDateString()}</span>
+                            <br></br>
+                            <span className='date'>{updateOrCloseDate}</span>
+                        </div>
+                        <a className='link view-issue' href={issue.html_url}>{'View on GitHub'}</a>
                     </div>
                 );
             });
@@ -109,20 +70,29 @@ class IssuesList extends Component<IssueProps, {}> {
 
         let milestoneUrl: string = 'https://github.com/' + githubProject + '/milestone/';
         milestoneUrl += this.props.milestoneNumber;
-        const seeMilestoneLink: any = (this.props.newestMilestone !== undefined) ? (<a href={milestoneUrl}> {'See current milestone'} </a>) : (<a href={issuesHtmlUrl}> {'See all on GitHub'}</a>);
-        const reportIncident: any = (this.props.newestMilestone !== undefined) ? ('') : (<a href={newIssueUrl}>{'Report an incident'}</a>);
+        const milestoneRelease: boolean = (this.props.newestMilestone !== undefined) ? true : false;
+        // const seeMilestoneLink: JSX.Element = (this.props.newestMilestone !== undefined) ? (<a className='link' href={milestoneUrl}> {'See current milestone'} </a>) : (<a className='link' href={issuesHtmlUrl}> {'View all on GitHub'}</a>);
+        const reportIncident: JSX.Element = (this.props.newestMilestone !== undefined) ? (<></>) : (<a className='button' href={newIssueUrl}>Report a new issue</a>);
 
         return(
             <div>
-                <h2>
+                <div className='div-title'>
                     {this.props.title}
-                </h2>
-                <p>
-                    {seeMilestoneLink}
-                    {this.props.newestMilestone !== undefined ? ('') : (' // ')}
-                    {reportIncident}
-                </p>
-                {issueItems}
+
+                    <span className='new-issue-position'>{reportIncident}</span>
+                    {milestoneRelease ? (
+                        <span className='view-milestone'>
+                            <a className='link' href={milestoneUrl}> {'See current milestone'} </a>
+                        </span>
+                    ) : (
+                        <span className='view-all-position'>
+                            <a className='link' href={issuesHtmlUrl}> {'View all on GitHub'} </a>
+                        </span>
+                    )}
+                </div>
+                <div className='flex-container'>
+                    {issueItems}
+                </div>
             </div>
         );
     }

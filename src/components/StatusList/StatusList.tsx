@@ -51,7 +51,7 @@ class StatusList extends Component<{}, StatusState> {
                         issues={this.state.issues}
                         error={this.state.error}
                         refreshIssues={this.refreshIssues}
-                        title='Current Incidents'
+                        title='Known current issues'
                         issueLabel='status'>
                     </IssuesList>
                 </div>

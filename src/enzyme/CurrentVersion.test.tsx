@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import chai from 'chai';
 import sinon from 'sinon';
 import Axios from 'axios';
@@ -38,14 +38,14 @@ describe('CurrentVersion', () => {
     });
 
     it('should output latest version when successful api call', async () => {
-        const component: any = await mount(<CurrentVersion/>);
+        const component: ReactWrapper<{}, {currentVersion: any}, CurrentVersion> = await mount(<CurrentVersion/>);
         axiosGetStub.should.have.been.calledOnceWithExactly(currentReleaseApiUrl);
         component.state().currentVersion.should.equal('someVersion');
     });
 
     it('should output nothing when unsuccessful api call', async () => {
         axiosGetStub.returns(undefined);
-        const component: any = await mount(<CurrentVersion/>);
+        const component: ReactWrapper<{}, {currentVersion: any}, CurrentVersion> = await mount(<CurrentVersion/>);
         axiosGetStub.should.have.been.calledOnceWithExactly(currentReleaseApiUrl);
         component.state().should.deep.equal({
             currentVersion: ''
